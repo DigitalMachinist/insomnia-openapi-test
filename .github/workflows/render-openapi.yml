@@ -44,11 +44,12 @@ jobs:
       - name: Render HTML Docs
         uses: seeebiii/redoc-cli-github-action@v10
         with:
-          args: 'bundle openapi.yaml --output ./docs/index.html'
+          args: 'bundle ./docs/openapi.yaml --output ./docs/index.html'
 
       # Commit changes
       - name: Commit & Push
         uses: actions-js/push@master
         with:
           branch: gh-pages
+          force: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
