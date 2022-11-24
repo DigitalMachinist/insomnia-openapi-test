@@ -36,9 +36,6 @@ jobs:
           file: './.insomnia/ApiSpec/spc_0c4342d7a97340279786357ac32d85dd.yml'
           key-path: '["contents"]'
 
-      - name: Dump
-        run: echo "${{ steps.read-openapi-yaml.outputs.data }}"
-
       # Save content as openapi.yml
       - name: Save openapi.yml
         run: echo "${{ steps.read-openapi-yaml.outputs.data }}" >> openapi.yaml
