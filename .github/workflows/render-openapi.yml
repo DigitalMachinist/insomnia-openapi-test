@@ -38,13 +38,13 @@ jobs:
 
       # Save content as openapi.yml
       - name: Save openapi.yml
-        run: echo '${{ steps.read-openapi-yaml.outputs.data }}' > openapi.yaml
+        run: mkdir docs; echo '${{ steps.read-openapi-yaml.outputs.data }}' > ./docs/openapi.yaml
 
       # Render openapi.yml to HTML with Redoc
       - name: Render HTML Docs
         uses: seeebiii/redoc-cli-github-action@v10
         with:
-          args: 'bundle openapi.yaml --output index.html'
+          args: 'bundle openapi.yaml --output ./docs/index.html'
 
       # Commit changes
       - name: Commit & Push
