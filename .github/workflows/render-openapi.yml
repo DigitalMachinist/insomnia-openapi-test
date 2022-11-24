@@ -34,7 +34,7 @@ jobs:
         uses: jbutcher5/read-yaml@1.6
         with:
           file: './.insomnia/ApiSpec/spc_0c4342d7a97340279786357ac32d85dd.yml'
-          key-path: '["content"]'
+          key-path: '["contents"]'
 
       - name: Dump
         run: echo "${{ steps.read-openapi-yaml.outputs.data }}"
