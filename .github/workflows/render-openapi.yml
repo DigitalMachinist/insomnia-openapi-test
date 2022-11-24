@@ -36,18 +36,21 @@ jobs:
           file: './.insomnia/ApiSpec/spc_0c4342d7a97340279786357ac32d85dd.yml'
           key-path: '["content"]'
 
+      - name: Dump
+        run: echo "${{ steps.read-openapi-yaml.outputs.data }}"
+
       # Save content as openapi.yml
       - name: Save openapi.yml
-        run: echo "${{ steps.read-openapi-yaml.outputs.data }}" >> openapi.yml
+        run: echo "${{ steps.read-openapi-yaml.outputs.data }}" >> openapi.yaml
 
-      # Render openapi.yml to HTML with ReDoc
-      - name: redoc-cli test
+      # Render openapi.yml to HTML with Redoc
+      - name: Render HTML Docs
         uses: seeebiii/redoc-cli-github-action@v10
         with:
-          args: 'bundle openapi.yml -o index.html'
+          args: 'bundle openapi.yaml --output index.html'
 
       # Commit changes
-      - name: Commit & Push changes
+      - name: Commit & Push
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
